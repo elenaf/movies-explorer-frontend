@@ -9,7 +9,7 @@ export default function Main() {
     return (
         <>
             < Promo />
-            < NavTab />
+            {/* < NavTab /> */}
             < AboutProject />
             < Tech />
             < AboutMe />

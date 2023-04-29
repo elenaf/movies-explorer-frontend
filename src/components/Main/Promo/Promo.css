@@ -1,0 +1,37 @@
+.promo {
+    margin: 0 auto;
+    margin-top: 38px;
+    padding: 0;
+    max-width: 1200px;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.promo__head {
+    color: #000000;
+    margin: 0;
+    padding: 160px 180px 151px;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.16em;
+}
+
+@media screen and (max-width: 768px) {
+    .promo__head {
+        padding: 350px 24px 314px;
+        font-size: 40px;
+        line-height: 1.3em;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo {
+        margin-top: 32px;
+    }
+
+    .promo__head {
+        padding: 220px 0 212px;
+        font-size: 29px;
+        line-height: 1.27em;
+    }
+}
