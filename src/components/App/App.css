@@ -1,0 +1,26 @@
+.App {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 18px 40px 20px 40px;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-color: #FFFFFF;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    padding: 18px 20px 20px 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .App {
+    padding: 18px 14px 20px 14px;
+  }
+}

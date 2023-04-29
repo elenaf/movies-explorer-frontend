@@ -1,0 +1,28 @@
+.authorization-panel {
+    justify-self: end;
+    align-self: center;
+}
+
+.authorization-panel__links {
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+}
+
+.authorization-panel__link {
+    color: #000000;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33em;
+}
+
+.authorization-panel__login-link {
+    padding: 8px 20px;
+    background-color: #2BE080;
+    border: none;
+    border-radius: 3px;
+
+}

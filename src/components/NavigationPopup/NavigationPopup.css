@@ -1,0 +1,40 @@
+.navigation-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 44.44px 1fr;
+    justify-items: center;
+    align-items: stretch;
+    min-height: 100%;
+    min-width: 520px;
+    background-color: #FFFFFF;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-popup__button-close {
+    height: 22px;
+    width: 22px;
+    background-image: url(../../images/exit-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    justify-self: end;
+    margin: 0;
+    padding: 22.44px 22.44px 0 0;
+}
+
+.navigation-popup__panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 520px) {
+    .navigation-popup {
+        min-width: 100%;
+    }
+}

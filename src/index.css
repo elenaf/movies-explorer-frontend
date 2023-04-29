@@ -1,0 +1,13 @@
+@import url(./fonts/InterWeb/inter.css);
+
+@import url(./components/App/App.css);
+
+@import url(./components/Header/Header.css);
+
+@import url(./components/NavigationPopup/NavigationPopup.css);
+
+@import url(./components/AuthorizationPanel/AuthorizationPanel.css);
+
+@import url(./components/NavigationPanel/NavigationPanel.css);
+
+@import url(./components/Navigation/Navigation.css);
