@@ -4,7 +4,7 @@
     column-gap: 44px;
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 70px;
 }
 
 .header__logo {
@@ -20,6 +20,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .header {
+        padding: 0 30px;
+    }
+
     .header__burger-menu {
         display: block;
         width: 44px;
@@ -29,5 +33,11 @@
         background-position: center center;
         justify-self: end;
         align-self: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        padding: 0 14px;
     }
 }

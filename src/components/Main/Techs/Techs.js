@@ -3,8 +3,8 @@ export default function Tech() {
         <section id="tech" className="tech">
             <h2 className="tech__header">Технологии</h2>
             <div className="tech__item">
-                    <h3 className="tech__item_header">7 технологий</h3>
-                    <p className="tech__item_description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+                    <h3 className="tech__item-header">7 технологий</h3>
+                    <p className="tech__item-description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
             </div>
             <ul className="tech-list">
                 <li className="tech-list-item">HTML</li>
