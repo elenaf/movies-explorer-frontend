@@ -11,8 +11,8 @@
     font-size: 22px;
     line-height: 1.21em;
     color: #000000;
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
+    max-width: 1140px;
     border-bottom: 1px solid #000000;
 }
 

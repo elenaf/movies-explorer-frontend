@@ -1,12 +1,32 @@
+import Logo from "../Logo/Logo";
+import { Link } from "react-router-dom";
+
 export default function Register() {
-    <section className="register">
-        <h2 className="register__greeting">Добро пожаловать!</h2>
-        <form className="register__data">
-            <input type="text" className="register__name" placeholder="Имя">Имя</input>
-            <input type="email" className="register__email" placeholder="Email"></input>
-            <input type="password" className="register__password"></input>
-            <button type="submit" className="register__register-button">Зарегистрироваться</button>
-            <p className="register__change-to-login">Уже зарегистрированы? Войти</p>
-        </form>
-    </section>
+    return (
+        <section className="authorization">
+            <div className="authorization-head">
+                < Logo />
+                <h2 className="authorization-head__greeting">Добро пожаловать!</h2>
+            </div>
+            
+            <form className="authorization__form">
+                <fieldset className="authorization__fields">
+                    <label for="auth-name" className="auth-label">Имя</label>
+                    <input id="auth-name" type="text" className="auth-field authorization__name" placeholder="Имя" required/>
+                    
+                    <label for="auth-email" className="auth-label">E-mail</label>
+                    <input id="auth-email" type="email" className="auth-field authorization__email" placeholder="Email"/>
+                    
+                    <label for="auth-password" className="auth-label">Пароль</label>
+                    <input id="auth-password" type="password" className="auth-field authorization__password"/>
+                    
+                </fieldset>
+                <button type="submit" className="authorization__submit-button">Зарегистрироваться</button>
+            </form>  
+            <p className="authorization__under-form-line">Уже зарегистрированы?&nbsp;
+                <Link to="/signin" className="authorization__under-form-link">Войти</Link>
+            </p>
+            
+        </section>
+    );
 }

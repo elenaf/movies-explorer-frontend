@@ -6,6 +6,8 @@
 
 @import url(./components/Header/Header.css);
 
+@import url(./components/Logo/Logo.css);
+
 @import url(./components/NavigationPopup/NavigationPopup.css);
 
 @import url(./components/AuthorizationPanel/AuthorizationPanel.css);
@@ -29,3 +31,25 @@
 @import url(./components/Main/Portfolio/Portfolio.css);
 
 @import url(./components/Footer/Footer.css);
+
+@import url(./components/Movies/Movies.css);
+
+@import url(./components/Movies/FilterCheckbox/FilterCheckbox.css);
+
+@import url(./components/Movies/SearchForm/SearchForm.css);
+
+@import url(./components/Movies/MoviesCardList/MoviesCardList.css);
+
+@import url(./components/Movies/MoviesCard/MoviesCard.css);
+
+@import url(./components/Movies/More/More.css);
+
+@import url(./components/SavedMovies/SavedMovies.css);
+
+@import url(./components/Profile/Profile.css);
+
+@import url(./components/Register/Register.css);
+
+@import url(./components/Login/Login.css);
+
+@import url(./components/NotFound/NotFound.css);

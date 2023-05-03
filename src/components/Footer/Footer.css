@@ -1,7 +1,8 @@
 .footer {
     background-color: #FAFAFA;
-    max-width: 1140px;
+    max-width: 100%;
     padding: 0 70px;
+    margin: 0 auto;
 }
 
 .footer__text {
@@ -15,6 +16,7 @@
     font-size: 13px;
     line-height: 1.21em;
     border-bottom: 1px solid #E8E8E8;
+    max-width: 1140px;
 }
 
 .footer__credits {
@@ -22,6 +24,8 @@
     justify-content: space-between;
     padding-top: 20px;
     padding-bottom: 20px;
+    max-width: 1140px;
+    margin: 0 auto;
 }
 
 .footer__credits-item {

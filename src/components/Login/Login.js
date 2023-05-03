@@ -1,11 +1,30 @@
+import Logo from "../Logo/Logo";
+import { Link } from "react-router-dom";
+
 export default function Login() {
-    <section className="login">
-        <h2 className="login__greeting">Рады видеть!</h2>
-        <form className="login__data">
-            <input type="email" className="login__email" placeholder="Email"></input>
-            <input type="password" className="login__password"></input>
-            <button type="submit" className="login__login-button">Войти</button>
-            <p className="login__change-to-login">Ещё не зарегистрированы? Регистрация</p>
-        </form>
-    </section>
+    return (
+        <section className="authorization">
+            <div className="authorization-head">
+                < Logo />
+                <h2 className="authorization-head__greeting">Рады видеть!</h2>
+            </div>
+            
+            <form className="authorization__form">
+                <fieldset className="authorization__fields">
+
+                    <label for="auth-email" className="auth-label">E-mail</label>
+                    <input id="auth-email" type="email" className="auth-field authorization__email" placeholder="Email"/>
+                    
+                    <label for="auth-password" className="auth-label">Пароль</label>
+                    <input id="auth-password" type="password" className="auth-field authorization__password"/>
+                    
+                </fieldset>
+                <button type="submit" className="authorization__submit-button">Войти</button>
+            </form>  
+            <p className="authorization__under-form-line">Ещё не зарегистрированы?&nbsp;
+                <Link to="/signin" className="authorization__under-form-link">Регистрация</Link>
+            </p>
+            
+        </section>
+    );
 }
