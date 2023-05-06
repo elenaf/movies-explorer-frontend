@@ -1,4 +1,3 @@
-/* import '../../index.css'; */
 import './App.css';
 
 import React, { useState } from 'react';
@@ -17,11 +16,9 @@ import Layout from '../Layout/Layout';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-console.log(currentUser.name);
-/*   const user = isLoggedIn ? currentUser : {name: '', email: ''};   */
 
   return (
-    <CurrentUserContext.Provider value={{currentUser, changeCurrentUser}/* currentUser */}>
+    <CurrentUserContext.Provider value={{currentUser, changeCurrentUser}}>
       <div className="App">
 
         < Routes>

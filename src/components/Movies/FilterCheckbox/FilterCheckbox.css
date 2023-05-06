@@ -7,10 +7,26 @@
 
 .short-films__filter_invisible {
     position: absolute;
-    width: 1px;
+    z-index: 2;
+    opacity: 0;
+    width: 34px;
+    height: 14px;
+    border-radius: 20px;
+    margin-right: 13px;
+    vertical-align: middle;
+    top: 4px;
+    /* width: 1px;
     height: 1px;
     overflow: hidden;
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0); */
+    /* position: absolute;
+    display: none;
+    width: 34px;
+    height: 14px;
+    background-color: transparent;
+    border: none;
+    margin-right: 13px;
+    vertical-align: middle; */
 }
 
 .short-films__filter_visible {
@@ -24,6 +40,11 @@
     vertical-align: middle;
 }
 
+.short-films__filter_visible_inactive {
+    background-color: #EBEBEB;
+    transition: ease .2s;
+}
+
 .short-films__filter-checker {
     box-sizing: border-box;
     position: absolute;
@@ -35,9 +56,11 @@
     right: 2px;
 }
 
-.short-films__filter-checker:disabled {
+.short-films__filter-checker_inactive {
     top: 2px;
     left: 2px;
+    background-color: #F5F5F5;
+    transition: ease 2s;
 }
 
 .short-films__filter-label {
