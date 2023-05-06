@@ -1,3 +1,4 @@
+import './MoviesCard.css';
 import movieImg from "../../../images/movie-booksellers-image.jpg"
 
 export default function MoviesCard() {

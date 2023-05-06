@@ -1,3 +1,5 @@
+import './Login.css';
+
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 
@@ -12,17 +14,17 @@ export default function Login() {
             <form className="authorization__form">
                 <fieldset className="authorization__fields">
 
-                    <label for="auth-email" className="auth-label">E-mail</label>
+                    <label htmlFor="auth-email" className="auth-label">E-mail</label>
                     <input id="auth-email" type="email" className="auth-field authorization__email" placeholder="Email"/>
                     
-                    <label for="auth-password" className="auth-label">Пароль</label>
+                    <label htmlFor="auth-password" className="auth-label">Пароль</label>
                     <input id="auth-password" type="password" className="auth-field authorization__password"/>
                     
                 </fieldset>
                 <button type="submit" className="authorization__submit-button">Войти</button>
             </form>  
             <p className="authorization__under-form-line">Ещё не зарегистрированы?&nbsp;
-                <Link to="/signin" className="authorization__under-form-link">Регистрация</Link>
+                <Link to="/signup" className="authorization__under-form-link">Регистрация</Link>
             </p>
             
         </section>

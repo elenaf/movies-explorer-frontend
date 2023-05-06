@@ -1,3 +1,5 @@
+import './AboutMe.css';
+
 import { NavLink } from "react-router-dom";
 import studentPhoto from "../../../images/profile-image.jpg";
 
@@ -10,10 +12,9 @@ export default function AboutMe() {
                     <div className="about-me__person-info-wrapper">
                         <h3 className="about-me__person-name">Елена</h3>
                         <p className="about-me__person-caption">Фронтенд-разработчик, 32 года</p>
-                        <p className="about-me__person-description">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
-    и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+                        <p className="about-me__person-description">Я родилась и живу в Орехово-Зуево, закончила факультет информатики и английского языка в МГОГИ. Я люблю слушать и играть музыку, а ещё увлекаюсь двухколесным транспортом. Много работала в сфере образования, в том числе дистанционного. Недавно начала кодить.</p>
                     </div>
-                    <NavLink to="https://github.com/elenaf" className="about-me__person-link">Github</NavLink>
+                    <a href="https://github.com/elenaf" target='_blank' rel='noreferrer' className="about-me__person-link">Github</a>
                 </div>
                 {/* <div className="about-me__person-photo"></div> */}
                 <img alt="Elena" src={studentPhoto} className="about-me__person-photo"/>

@@ -1,10 +1,4 @@
-.navigation-panel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* .navigation-panel__user-data {
+.nav-user-data {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,7 +7,7 @@
     padding: 0;
 }
 
-.navigation-panel__profile-link {
+.nav-user-data__profile-link {
     color: #000000;
     text-decoration: none;
     margin: 0;
@@ -23,7 +17,7 @@
     line-height: 1.14em;
 }
 
-.navigation-panel__profile-icon {
+.nav-user-data__profile-icon {
     width: 26px;
     height: 30px;
     background-color: #F9F9F9;
@@ -31,16 +25,4 @@
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center center;
-} */
-
-@media screen and (max-width: 768px) {
-    .navigation-panel {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        min-width: 520px;
-        min-height: 100vh;
-        background-color: #FFFFFF;
-    }
 }

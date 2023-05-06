@@ -1,3 +1,5 @@
+import './Techs.css';
+
 export default function Tech() {
     return (
         <section id="tech" className="tech">

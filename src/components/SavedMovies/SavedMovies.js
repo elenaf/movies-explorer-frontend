@@ -1,3 +1,5 @@
+import './SavedMovies.css';
+
 import React from "react";
 
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";

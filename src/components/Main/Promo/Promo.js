@@ -1,3 +1,5 @@
+import './Promo.css';
+
 import NavTab from "../NavTab/NavTab";
 
 export default function Promo() {

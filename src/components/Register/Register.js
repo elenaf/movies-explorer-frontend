@@ -1,3 +1,5 @@
+import './Register.css';
+
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 
@@ -11,13 +13,13 @@ export default function Register() {
             
             <form className="authorization__form">
                 <fieldset className="authorization__fields">
-                    <label for="auth-name" className="auth-label">Имя</label>
+                    <label htmlFor="auth-name" className="auth-label">Имя</label>
                     <input id="auth-name" type="text" className="auth-field authorization__name" placeholder="Имя" required/>
                     
-                    <label for="auth-email" className="auth-label">E-mail</label>
+                    <label htmlFor="auth-email" className="auth-label">E-mail</label>
                     <input id="auth-email" type="email" className="auth-field authorization__email" placeholder="Email"/>
                     
-                    <label for="auth-password" className="auth-label">Пароль</label>
+                    <label htmlFor="auth-password" className="auth-label">Пароль</label>
                     <input id="auth-password" type="password" className="auth-field authorization__password"/>
                     
                 </fieldset>

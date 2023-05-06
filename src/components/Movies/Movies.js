@@ -1,3 +1,4 @@
+import './Movies.css';
 import React from "react";
 
 import MoviesCardList from "./MoviesCardList/MoviesCardList";

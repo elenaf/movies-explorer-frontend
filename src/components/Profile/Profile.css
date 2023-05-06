@@ -12,7 +12,7 @@
     margin-bottom: 123px;
 }
 
-.profile__data {
+.profile__form {
     display: flex;
     flex-direction: column;
     max-width: 410px;
@@ -31,7 +31,7 @@
     padding-bottom: 16px;
 }
 
-.profile__data-string:last-child {
+.profile__data-string:nth-child(2) {
     padding-top: 17px;
 }
 
@@ -45,6 +45,13 @@
     font-weight: 400;
     font-size: 11px;
     line-height: 1.21em;
+    border: none;
+    text-align: right;
+}
+
+.profile__field-data:focus {
+    border: none;
+    outline: none;
 }
 
 .profile__control-buttons {
@@ -57,12 +64,16 @@
 .profile__control-button {
     text-decoration: none;
     color: #000000;
+    margin: 0 auto;
+    padding: 0;
 }
 
-.profile__edit-button {
+.profile__submit-button {
     font-weight: 400;
     font-size: 13px;
     line-height: 1.21em;
+    border: none;
+    background-color: transparent;
 }
 
 .profile__signout-button {
@@ -107,7 +118,7 @@
         margin-top: 379px;
     }
 
-    .profile__edit-button {
+    .profile__submit-button {
         font-size: 12px;
     }
     

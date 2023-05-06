@@ -1,40 +1,89 @@
-import '../../index.css'
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+/* import '../../index.css'; */
+import './App.css';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { CurrentUserContext, currentUser, changeCurrentUser } from '../../contexts/CurrentUserContext';
+
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import NotFound from '../NotFound/NotFound';
+import Layout from '../Layout/Layout';
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+console.log(currentUser.name);
+/*   const user = isLoggedIn ? currentUser : {name: '', email: ''};   */
+
   return (
-    <div className="App">
-      {/* < Header /> */}
-      {/* < Register /> */}
-      {/* < Login /> */}
-      < NotFound />
-      {/* < Profile /> */}
-      {/* < Movies /> */}
-      {/* < SearchForm />
-      < MoviesCardList /> */}
-      {/* < Routes>
-        < Route path='/' element={< Main />} />
-        < Route path='/movies' element={< Movies />} />
-        < Route path='/saved-movies' element={< SavedMovies />} />
-        < Route path='/profile' element={< Profile />} />
-        < Route path='/signin' element={< Login />} />
-        < Route path='/signup' element={< Register />} />
-      </Routes> */}
-      {/* < Footer /> */}
-    </div>
+    <CurrentUserContext.Provider value={{currentUser, changeCurrentUser}/* currentUser */}>
+      <div className="App">
+
+        < Routes>
+          < Route 
+            path='/' 
+            element={
+              <Layout isLoggedIn={isLoggedIn}>
+                < Main/>
+              </Layout>} 
+          />
+
+          < Route 
+            path='/movies' 
+            element={
+              <Layout isLoggedIn={isLoggedIn}>
+                < Movies />
+              </Layout>} 
+          />
+
+          < Route 
+            path='/saved-movies' 
+            element={
+              <Layout isLoggedIn={isLoggedIn}>
+                < SavedMovies />
+              </Layout>} 
+          />
+
+          < Route 
+            path='/profile' 
+            element={
+              <Layout hasFooter={false} isLoggedIn={isLoggedIn}>
+                  < Profile />
+              </Layout>} 
+          />
+
+          < Route 
+            path='/signin' 
+            element={
+              <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
+                  < Login />
+              </Layout>} 
+          />
+
+          < Route 
+            path='/signup' 
+            element={
+            <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
+              < Register />
+            </Layout>} 
+          />
+
+          < Route 
+            path='*' 
+            element={
+            <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
+              < NotFound />
+              </Layout>} 
+          />
+        </Routes>
+
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

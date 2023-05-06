@@ -33,6 +33,8 @@
         background-position: center center;
         justify-self: end;
         align-self: center;
+        background-color: transparent;
+        border: none;
     }
 }
 

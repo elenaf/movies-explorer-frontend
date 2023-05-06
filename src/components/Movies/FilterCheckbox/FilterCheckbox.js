@@ -1,3 +1,5 @@
+import './FilterCheckbox.css';
+
 export default function FilterCheckbox() {
     return (
         <section className="filter">
@@ -6,7 +8,7 @@ export default function FilterCheckbox() {
                 <div className="short-films__filter-checker"></div>
             </div>
             
-            <label for="short-films" className="short-films__filter-label">Короткометражки</label>
+            <label htmlFor="short-films" className="short-films__filter-label">Короткометражки</label>
         </section>
     );
 }

@@ -1,3 +1,5 @@
+import './AboutProject.css';
+
 export default function AboutProject() {
     return (
         <section id="project" className="about-project">
