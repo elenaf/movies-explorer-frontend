@@ -101,7 +101,7 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
     .authorization-head {
         padding-top: 232px;
     }
@@ -111,7 +111,7 @@
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 767px) {
     .authorization-head {
         max-width: 260px;
         align-items: center;

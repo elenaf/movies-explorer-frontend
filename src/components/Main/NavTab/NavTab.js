@@ -1,8 +1,6 @@
 import './NavTab.css'
 
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-
 
 export default function NavTab() {
     return (

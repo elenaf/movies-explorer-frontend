@@ -15,23 +15,6 @@
     padding: 0;
 }
 
-/* .navigation-popup_open {
-    display: grid;
-} */
-
-/* .navigation-popup__button-burger {
-    display: none;
-    width: 44px;
-    height: 44px;
-    background-image: url(../../images/burger-menu-icon.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    justify-self: end;
-    align-self: center;
-    background-color: transparent;
-    border: none;
-} */
-
 .navigation-popup__button-close {
     display: block;
     height: 22px;

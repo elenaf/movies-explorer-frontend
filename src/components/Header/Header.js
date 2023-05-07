@@ -18,12 +18,11 @@ export default function Header(props) {
     const handleExitClick = () => {
         setIsOpen(false);
     }
-console.log(isOpen);
 
     return(
         <header className="header">
             < Logo />
-            {/* < NavigationPopup isVisible={isBurgerNavVisible}/> */}
+
             {isLoggedIn ? 
             <>
                 < NavigationPanel />

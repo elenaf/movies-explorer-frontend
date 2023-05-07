@@ -6,8 +6,7 @@ import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Profile() {
-    const { currentUser, changeCurrentUser } = useContext(CurrentUserContext);/* 
-    const currentUserChange = useContext(CurrentUserContext); */
+    const { currentUser, changeCurrentUser } = useContext(CurrentUserContext);
 
     let { name, email } = currentUser;
 
@@ -17,10 +16,7 @@ export default function Profile() {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log('submit');
         changeCurrentUser(userName, userEmail);
-        /* currentUser.name = userName;
-        currentUser.email = userEmail; */
         setHeaderName(userName);
     }
 

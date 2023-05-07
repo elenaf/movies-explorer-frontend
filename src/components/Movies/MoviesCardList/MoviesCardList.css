@@ -8,13 +8,13 @@
     background-color: #FFFFFF;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
     .movies-cards {
         padding: 60px 30px 30px;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .movies-cards {
         padding: 40px 10px 20px;
         gap: 20px;

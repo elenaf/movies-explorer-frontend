@@ -15,18 +15,6 @@
     margin-right: 13px;
     vertical-align: middle;
     top: 4px;
-    /* width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(0 0 0 0); */
-    /* position: absolute;
-    display: none;
-    width: 34px;
-    height: 14px;
-    background-color: transparent;
-    border: none;
-    margin-right: 13px;
-    vertical-align: middle; */
 }
 
 .short-films__filter_visible {
@@ -70,7 +58,7 @@
     line-height: 1.5em;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .filter {
         margin-top: 45px;
     }

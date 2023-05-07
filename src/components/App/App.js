@@ -25,7 +25,7 @@ function App() {
           < Route 
             path='/' 
             element={
-              <Layout isLoggedIn={isLoggedIn}>
+              <Layout isLoggedIn={isLoggedIn} handleLogin={setIsLoggedIn}>
                 < Main/>
               </Layout>} 
           />

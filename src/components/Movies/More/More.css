@@ -20,7 +20,7 @@
     background-color: #FFFFFF;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .more__button {
         width: 240px;
     }

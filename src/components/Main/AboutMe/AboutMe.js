@@ -1,6 +1,5 @@
 import './AboutMe.css';
 
-import { NavLink } from "react-router-dom";
 import studentPhoto from "../../../images/profile-image.jpg";
 
 export default function AboutMe() {
@@ -16,7 +15,6 @@ export default function AboutMe() {
                     </div>
                     <a href="https://github.com/elenaf" target='_blank' rel='noreferrer' className="about-me__person-link">Github</a>
                 </div>
-                {/* <div className="about-me__person-photo"></div> */}
                 <img alt="Elena" src={studentPhoto} className="about-me__person-photo"/>
             </div>
         </section>

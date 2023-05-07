@@ -19,4 +19,3 @@ export default function FilterCheckbox() {
         </section>
     );
 }
-/* className={ `${isChecked ? "short-films__filter_visible" : "short-films__filter_visible_inactive"}` } */

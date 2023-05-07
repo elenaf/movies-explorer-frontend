@@ -1,7 +1,5 @@
 import './Portfolio.css';
 
-import { NavLink } from "react-router-dom";
-
 export default function Portfolio() {
     return (
         <section className="portfolio">
