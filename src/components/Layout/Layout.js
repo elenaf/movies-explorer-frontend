@@ -11,7 +11,7 @@ export default function Layout(props) {
       <section className='layout'>
          <div className="content">
             {hasHeader && <Header isLoggedIn={isLoggedIn}/>}
-            {children}
+            <main>{children}</main>
          </div>
          {hasFooter && <Footer />}
       </section>

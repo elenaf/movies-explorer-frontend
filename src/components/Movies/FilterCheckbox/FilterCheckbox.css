@@ -1,31 +1,29 @@
-.filter {
+.short-films {
     position: relative;
     margin-top: 31px;
     justify-self: center;
     grid-column: 1/3;
 }
 
-.short-films__filter_invisible {
-    position: absolute;
-    z-index: 2;
-    opacity: 0;
+.short-films__filter {
     width: 34px;
     height: 14px;
     border-radius: 20px;
     margin-right: 13px;
     vertical-align: middle;
+}
+
+.short-films__filter_invisible {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
     top: 4px;
 }
 
 .short-films__filter_visible {
     position: relative;
     display: inline-block;
-    width: 34px;
-    height: 14px;
     background-color: #2BE080;
-    border-radius: 20px;
-    margin-right: 13px;
-    vertical-align: middle;
 }
 
 .short-films__filter_visible_inactive {
@@ -59,7 +57,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .filter {
+    .short-films {
         margin-top: 45px;
     }
 

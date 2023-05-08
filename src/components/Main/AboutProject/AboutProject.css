@@ -93,6 +93,27 @@
         padding: 0 18px;
     }
 
+    .about-project__header {
+        font-size: 18px;
+        padding: 70px 0 28px;
+    }
+
+    .about-project__items {
+        margin: 60px 0;
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .about-project__item-header {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .about-project__item-description {
+        font-size: 11px;
+        line-height: 1.45em;
+    }
+
     .scale__timeline {
         font-size: 11px;
         padding: 11px 0;
@@ -101,6 +122,7 @@
     .scale__caption {
         font-weight: 400;
         font-size: 11px;
+        line-height: 1.15em;
         padding: 10px 0;
     }
 }

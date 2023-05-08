@@ -9,9 +9,9 @@ export default function FilterCheckbox() {
     }
 
     return (
-        <section className="filter">
-            <input id="short-films" className="short-films__filter_invisible" type="checkbox" value="short-films" onChange={changeCheck}/>
-            <div className={`short-films__filter_visible ${isChecked ? "" : "short-films__filter_visible_inactive"}` }>
+        <section className="short-films">
+            <input id="short-films" className="short-films__filter short-films__filter_invisible" type="checkbox" value="short-films" onChange={changeCheck}/>
+            <div className={`short-films__filter short-films__filter_visible ${isChecked ? "" : "short-films__filter_visible_inactive"}` }>
                 <div className={`short-films__filter-checker ${isChecked ? "" : "short-films__filter-checker_inactive"}` }></div>
             </div>
             
