@@ -13,9 +13,21 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import Layout from '../Layout/Layout';
 
+import mainApi from '../../utils/MainApi';
+
 function App() {
 
+  const [currentUser, setCurrentUser] = useState({name: '', email: ''});
+
+  mainApi.getUserInfo().then((data) => {
+    setCurrentUser(data);
+  })
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [movies, setMovies] = useState({});
+
+  const [savedMovies, setSavedMovies] = useState({});
 
   return (
     <CurrentUserContext.Provider value={{currentUser, changeCurrentUser}}>
@@ -34,7 +46,7 @@ function App() {
             path='/movies' 
             element={
               <Layout isLoggedIn={isLoggedIn}>
-                < Movies />
+                < Movies movies={movies} />
               </Layout>} 
           />
 
@@ -42,7 +54,7 @@ function App() {
             path='/saved-movies' 
             element={
               <Layout isLoggedIn={isLoggedIn}>
-                < SavedMovies />
+                < SavedMovies savedMovies={savedMovies} />
               </Layout>} 
           />
 
