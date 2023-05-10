@@ -1,0 +1,14 @@
+.App {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-color: #FFFFFF;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

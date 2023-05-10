@@ -1,0 +1,47 @@
+.movie-search {
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: 1fr 70px;
+    column-gap: 10px;
+    justify-content: end;
+    margin: 0 auto;
+    padding: 80px 70px 39px;
+    border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 10px;
+}
+
+.movie-search__input {
+    margin: 0;
+    padding: 15px 0 15px 22px;
+    color: #A0A0A0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28em;
+    border: none;
+    border-radius: 4px;
+    background-color: #F9F9F9;
+}
+
+.movie-search__submit-button {
+    width: 70px;
+    height: 44px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5em;
+    border: none;
+    border-radius: 3px;
+    background-color: #FF6838;
+}
+
+@media screen and (max-width: 1279px) {
+    .movie-search {
+        padding: 80px 30px 39px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .movie-search {
+        padding: 81px 14px 43px;
+    }
+}

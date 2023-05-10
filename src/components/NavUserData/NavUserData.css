@@ -1,0 +1,28 @@
+.nav-user-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-user-data__profile-link {
+    color: #000000;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.14em;
+}
+
+.nav-user-data__profile-icon {
+    width: 26px;
+    height: 30px;
+    background-color: #F9F9F9;
+    background-image: url(../../images/profile-icon.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}

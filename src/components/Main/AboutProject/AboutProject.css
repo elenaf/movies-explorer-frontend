@@ -1,0 +1,128 @@
+.about-project {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 70px;
+    color: #000000;
+}
+
+.about-project__header {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.21em;
+    color: #000000;
+    margin: 0;
+    padding: 110px 0 23px;
+    width: 100%;
+    border-bottom: 1px solid #000000;
+}
+
+.about-project__items {
+    margin-top: 70px;
+    margin-bottom: 110px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    justify-items: start;
+    align-items: start;
+}
+
+.about-project__item {
+    margin: 0;
+    padding: 0;
+}
+
+.about-project__item-header {
+    margin: 0;
+    margin-bottom: 26px;
+    padding: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.21em;
+    color: #000000;
+}
+
+.about-project__item-description {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.42em;
+}
+
+.scale {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 36px 31px;
+    grid-auto-flow: column;
+    margin-bottom: 110px;
+}
+
+.scale__timeline {
+    background-color: #F2F2F2;
+    color: #000000;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21em;
+    text-align: center;
+    padding: 9px 0;
+    margin: 0;
+}
+
+.scale__timeline:nth-child(1) {
+    background-color: #2BE080;
+}
+
+.scale__caption {
+    color: #A0A0A0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.21em;
+    text-align: center;
+    padding: 14px 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 1279px) {
+    .about-project {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .about-project {
+        padding: 0 18px;
+    }
+
+    .about-project__header {
+        font-size: 18px;
+        padding: 70px 0 28px;
+    }
+
+    .about-project__items {
+        margin: 60px 0;
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .about-project__item-header {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .about-project__item-description {
+        font-size: 11px;
+        line-height: 1.45em;
+    }
+
+    .scale__timeline {
+        font-size: 11px;
+        padding: 11px 0;
+    }
+    
+    .scale__caption {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 1.15em;
+        padding: 10px 0;
+    }
+}
