@@ -7,20 +7,20 @@ class MainApi extends Api {
         this._headers = config.headers;
     }
 
-    async getUserInfo() {
+    /* async getUserInfo() {
         const response = await fetch(`${this._url}/users/me`, {
             headers: this._headers,
         });
         const data = await this._handleFetchResponse(response);
         return data;
-    }
+    } */
 
-    /* getUserInfo() {
+    getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             headers: this._headers,
         })
         .then((res) => this._handleFetchResponse(res));
-    } */
+    }
 
     editProfile({ email, name }) {
         return fetch(`${this._url}/users/me `, {
