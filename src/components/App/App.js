@@ -1,8 +1,8 @@
 import './App.css';
 
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { CurrentUserContext, currentUser, changeCurrentUser } from '../../contexts/CurrentUserContext';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -14,63 +14,111 @@ import NotFound from '../NotFound/NotFound';
 import Layout from '../Layout/Layout';
 
 import mainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { register, login, getUserData } from '../../utils/Auth';
+import { useEffect } from 'react';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({name: '', email: ''});
+  const [currentUser, setCurrentUser] = useState({/* name: '', email: '' */});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegOk, setIsRegOk] = useState(true);
+  const navigate = useNavigate();
 
-  mainApi.getUserInfo().then((data) => {
-    setCurrentUser(data);
-  })
+  const tokenCheck = async() => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      try {
+        const userData = await getUserData(token);
+        setCurrentUser(...currentUser, userData);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const handleRegister = async(name, email, password) => {
+    try{
+      const userData = await register(email, password, name);
+      setIsRegOk(true);
+      await handleLogin(email, password);
+      setCurrentUser(userData);
+    } catch (err) {
+      setIsRegOk(false);
+    }
+  };
 
-  const [movies, setMovies] = useState({});
+  const handleLogin = async(email, password) => {
+    try {
+      const { token } = await login(email, password);
+      localStorage.setItem('token', token);
+      setIsLoggedIn(true);
+      navigate("/movies");
+    } catch (err) {
+      console.log(err);
+      setIsLoggedIn(false);
+    }
+  };
 
-  const [savedMovies, setSavedMovies] = useState({});
+  useEffect(() => {
+    tokenCheck();
+  }, [isLoggedIn]);
 
   return (
-    <CurrentUserContext.Provider value={{currentUser, changeCurrentUser}}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
 
         < Routes>
           < Route 
             path='/' 
             element={
-              <Layout isLoggedIn={isLoggedIn} handleLogin={setIsLoggedIn}>
+              <Layout isLoggedIn={isLoggedIn}>
                 < Main/>
               </Layout>} 
           />
 
           < Route 
-            path='/movies' 
+            path='/movies'
+            isLoggedIn={isLoggedIn}
             element={
-              <Layout isLoggedIn={isLoggedIn}>
-                < Movies movies={movies} />
-              </Layout>} 
+              < ProtectedRoute element={
+                <Layout>
+                  < Movies />
+                </Layout>
+              } />
+            }
           />
 
           < Route 
-            path='/saved-movies' 
+            path='/saved-movies'
+            isLoggedIn={isLoggedIn}
             element={
-              <Layout isLoggedIn={isLoggedIn}>
-                < SavedMovies savedMovies={savedMovies} />
-              </Layout>} 
+              < ProtectedRoute element={
+                <Layout>
+                  < SavedMovies />
+                </Layout>
+              } />
+            }
           />
 
           < Route 
-            path='/profile' 
+            path='/profile'
+            isLoggedIn={isLoggedIn}
             element={
-              <Layout hasFooter={false} isLoggedIn={isLoggedIn}>
+              < ProtectedRoute element={
+                <Layout hasFooter={false}>
                   < Profile />
-              </Layout>} 
+                </Layout>
+              } />
+            }
           />
 
           < Route 
             path='/signin' 
             element={
               <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Login />
+                  < Login handleLogin={handleLogin} />
               </Layout>} 
           />
 
@@ -78,7 +126,7 @@ function App() {
             path='/signup' 
             element={
             <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-              < Register />
+              < Register handleRegister={handleRegister} isRegOk={isRegOk} />
             </Layout>} 
           />
 

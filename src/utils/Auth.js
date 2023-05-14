@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.movie.nomoredomains.monster/'
+export const BASE_URL = 'https://api.movie.nomoredomains.monster'
 
 const defaultHeaders = {
     "Content-Type": "application/json",
@@ -48,21 +48,21 @@ export const request = ({
 
 export const register = (email, password, name) => {
     return request({
-        url: 'signup',
+        url: '/signup',
         data: { email, password, name },
     })
 }
 
-export const login = ( email, password) => {
+export const login = (email, password) => {
     return request({
-        url: 'signin',
+        url: '/signin',
         data: { email, password },
     })
 }
 
 export const getUserData = (token) => {
     return request({
-        url: 'users/me',
+        url: '/users/me',
         method: 'GET',
         token,
     })

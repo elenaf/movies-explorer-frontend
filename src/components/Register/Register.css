@@ -75,6 +75,24 @@
     outline: 0;
 }
 
+.auth__error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.21em;
+    color: #FF6838;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 3px;
+}
+
+.auth__error_visible {
+    display: initial;
+}
+
+.auth__error_invisible {
+    display: none;
+}
+
 .authorization__submit-button {
     margin: 69px 0 16px;
     padding: 13px 0 15px;
@@ -85,6 +103,10 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 1.21em;
+}
+
+.authorization__submit-button:disabled {
+    background-color: #A0A0A0;
 }
 
 .authorization__under-form-line {

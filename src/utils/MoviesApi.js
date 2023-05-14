@@ -8,7 +8,7 @@ class MoviesApi extends Api {
     }
 
     getMovies() {
-        return fetch(`/${this._url}movies`, {
+        return fetch(`${this._url}/d`, {
             headers: this._headers,
         })
         .then((res) => this._handleFetchResponse(res));
@@ -28,7 +28,7 @@ class MoviesApi extends Api {
         nameRu, 
         nameEn 
     }) {
-        return fetch(`/${this._url}movies `, {
+        return fetch(`${this._url}/movies `, {
           method: 'POST',
           headers: this._headers,
           body: JSON.stringify({ 
@@ -50,7 +50,7 @@ class MoviesApi extends Api {
     }
 
     deleteMovie(movieId) {
-        return fetch(`/${this._url}movies/${movieId}`, {
+        return fetch(`${this._url}/movies/${movieId}`, {
             method: 'DELETE',
             headers: this._headers
           })

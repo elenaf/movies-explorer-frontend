@@ -1,12 +1,15 @@
 import './FilterCheckbox.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function FilterCheckbox() {
+export default function FilterCheckbox({ setIsShort }) {
     const [isChecked, setIsChecked] = useState(false);
 
     const changeCheck = () => {
         setIsChecked(!isChecked);
     }
+
+    useEffect(() => setIsShort(isChecked));
+    
 
     return (
         <section className="short-films">
