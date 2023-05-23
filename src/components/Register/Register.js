@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import { useFormWithValidation } from '../../utils/useForm';
 
 export default function Register({ handleRegister, isRegOk }) {
-    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ name:'', email:'', password:'' });
+    const { values, handleChange, errors, isValid } = useFormWithValidation({ name:'', email:'', password:'' });
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const { name, email, password } = values;
         handleRegister(name, email, password);
-
     }
 
     return (

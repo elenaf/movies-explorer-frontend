@@ -85,6 +85,14 @@
     padding-bottom: 3px;
 }
 
+.auth__error_visible {
+    display: initial;
+}
+
+.auth__error_invisible {
+    display: none;
+}
+
 .authorization__submit-button {
     margin: 69px 0 16px;
     padding: 13px 0 15px;

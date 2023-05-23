@@ -1,6 +1,5 @@
 import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
-/* import { movies } from '../../../constants/constants'; */
 import React from 'react';
 
 export default function MoviesCardList({ movies, isSaved, handleLikeClick, handleDeleteClick, savedMovies }) {

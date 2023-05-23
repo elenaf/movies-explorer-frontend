@@ -1,16 +1,11 @@
 import './FilterCheckbox.css';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export default function FilterCheckbox({ isShort, setIsShort }) {
 
     const changeCheck = () => {
         setIsShort(!isShort);
-    }
-
-    /* useEffect(() => {
-        localStorage.setItem('isShort', `${isShort}`);
-    }, [isShort]); */
-    
+    }    
 
     return (
         <section className="short-films">

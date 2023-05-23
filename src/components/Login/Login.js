@@ -3,9 +3,10 @@ import './Login.css';
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import { useFormWithValidation } from '../../utils/useForm';
+import { useEffect } from 'react';
 
-export default function Login({ handleLogin }) {
-    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ email:'', password:'' });
+export default function Login({ handleLogin, isLoggedIn, errorMessage, setErrorMessage }) {
+    const { values, handleChange, errors, isValid } = useFormWithValidation({ email:'', password:'' });
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -13,6 +14,10 @@ export default function Login({ handleLogin }) {
         console.log('submit login');
         handleLogin(email, password);
     }
+
+    useEffect(() => {
+        setErrorMessage();
+    }, [values]);
 
     return (
         <section className="authorization">
@@ -50,7 +55,7 @@ export default function Login({ handleLogin }) {
                     {errors["password"] && <span className='auth__error'>{errors["password"]}</span>}
                     
                 </fieldset>
-                {/* <span className={`auth__error ${ isLoggedIn ? "auth__error_invisible" : "auth__error_visible" }` }>Что-то пошло не так...</span> */}
+                {(errorMessage) && <span className={`auth__error ${ isLoggedIn ? "auth__error_invisible" : "auth__error_visible" } `}>{errorMessage}</span>}
                 <button type="submit" className="authorization__submit-button" disabled={!isValid}>Войти</button>
             </form>  
             <p className="authorization__under-form-line">Ещё не зарегистрированы?&nbsp;

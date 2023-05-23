@@ -36,9 +36,12 @@ export default function SavedMovies() {
     // записываем полученные из api сохраненные фильмы в стейт movies
     const getMovies = useCallback(async() => {
         try {
-           const response = await mainApi.getMovies();
-           setMovies(response);
+            setIsLoading(true);
+            const response = await mainApi.getMovies();
+            setIsLoading(false);
+            setMovies(response);
         } catch (err) {
+            setIsLoading(false);
             setError(true);
         }
     }, []);
@@ -94,7 +97,6 @@ export default function SavedMovies() {
                 setFilterString={setFilterString}
                 search={search}
                 setSearch={setSearch}
-                setIsLoading={setIsLoading}
             />
 
             {error ? 

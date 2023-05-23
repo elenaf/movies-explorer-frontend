@@ -20,9 +20,10 @@ import { useEffect } from 'react';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({name: '', email: '', _id:''});
+  const [currentUser, setCurrentUser] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegOk, setIsRegOk] = useState(true);
+  const [errorMessage, setErrorMessage] = useState();
   const navigate = useNavigate();
 
   const tokenCheck = () => {
@@ -60,10 +61,13 @@ function App() {
       const { token } = await login(email, password);
       localStorage.setItem('token', token);
       setIsLoggedIn(true);
+      setUserInfo();
       navigate("/movies");
+      setErrorMessage();
     } catch (err) {
       console.log(err);
       setIsLoggedIn(false);
+      setErrorMessage(err.message);
     }
   };
 
@@ -89,7 +93,7 @@ function App() {
   const handleProfileEdit = async({ name, email }) => {
     try {
       const userData = await mainApi.editProfile({ email, name });
-      setCurrentUser({ ...currentUser, userData });
+      setCurrentUser(userData);
       console.log(currentUser);
     } catch (err) {
       console.log(err);
@@ -157,7 +161,7 @@ function App() {
             path='/signin' 
             element={
               <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Login handleLogin={handleLogin} />
+                  < Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
               </Layout>} 
           />
 

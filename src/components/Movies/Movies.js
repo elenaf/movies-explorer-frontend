@@ -1,17 +1,13 @@
 import './Movies.css';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 import More from "./More/More";
 import moviesApi from '../../utils/MoviesApi';
-import Preloader from './Preloader/Preloader';
 import mainApi from '../../utils/MainApi';
 
 export default function Movies() {
-    const currentUser = React.useContext(CurrentUserContext);
 
     // стейт, который меняется каждый раз, когда пользователь вводит символ в строку поиска
     const [search, setSearch] = useState(localStorage.getItem('search') ?? '');
@@ -27,12 +23,6 @@ export default function Movies() {
 
     // тут храним все отданные api сохраненные фильмы
     const [savedMovies, setSavedMovies] = useState([]);
-
-    // состояние лайка
-    const [isLiked, setIsLiked] = useState();
-
-    // булевый стейт, идет ли загрузка фильмов на страницу
-    const [isLoading, setIsLoading] = useState(false);
 
     // условие поиска - короткометражки
     const [isShort, setIsShort] = useState(localStorage.getItem('isShort') ?? false);
@@ -119,7 +109,7 @@ export default function Movies() {
 
         localStorage.setItem("search", filterString);
         localStorage.setItem('isShort', `${isShort}`);
-       localStorage.setItem('filteredMovies', JSON.stringify(filtered));
+        localStorage.setItem('filteredMovies', JSON.stringify(filtered));
         
         return filtered;
     }, [filterString, movies, isShort]);
@@ -156,36 +146,8 @@ export default function Movies() {
             console.log(movieToSave);
             setSavedMovies([...savedMovies, movieToSave]);
         }
-      
-
-        /* const liked = savedMovies.some((m) => {
-            if (m.movieId === movie.movieId) {
-                likedM = m;
-                return true;
-            }
-            return false;
-        });
-        if (liked) {
-            const dislikedMovie = await mainApi.deleteMovie(likedM._id);
-            const likedMovies = savedMovies.filter((savedMovie) => {
-                if (savedMovie !== dislikedMovie) {
-                    return savedMovie;
-                }
-                return false;
-            });
-            console.log(likedMovies);
-            setSavedMovies(likedMovies);
-        } else {
-            const likedMovie = await mainApi.addNewMovie(movie);
-            console.log(likedMovie);
-            setSavedMovies([...savedMovies, likedMovie]);
-        } */
     }
 
-   /*  useEffect(() => {
-        fetchSavedMovies();
-    }, [handleLikeClick]);
- */
     return (
         <>
             < SearchForm 
@@ -194,13 +156,10 @@ export default function Movies() {
                 setFilterString={setFilterString}
                 search={search}
                 setSearch={setSearch}
-                setIsLoading={setIsLoading}
             />
 
             {error ? 
             <div className='movies__error'>{errorMessage}</div> : 
-/*             isLoading ?
-            < Preloader /> : */
             < MoviesCardList 
                 movies={moviesToRender} 
                 isSaved={false}

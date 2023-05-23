@@ -77,6 +77,11 @@
     color: #E8E8E8;
 }
 
+.profile__control-button:disabled {
+    color: #E8E8E8;
+    cursor:default;
+}
+
 .profile__submit-button {
     font-weight: 400;
 }

@@ -3,22 +3,17 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useFormWithValidation } from '../../../utils/useForm';
 import { useEffect } from 'react';
 
-export default function SearchForm({ isShort, setIsShort, setFilterString, search, setSearch, setIsLoading }) {
+export default function SearchForm({ isShort, setIsShort, setFilterString, search, setSearch }) {
 
-    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ movie: search });
+    const { values, handleChange, errors, isValid } = useFormWithValidation({ movie: search });
 
     useEffect(() => {
         setSearch(values.movie);
     }, [values.movie, setSearch])
 
-    /* useEffect(() => {
-        localStorage.setItem('search', search)
-    }, [search]) */
-
     const handleSearchSubmit = (evt) => {
         evt.preventDefault();
         setFilterString(search);
-        /* setIsLoading(true); */
     }
 
     return (

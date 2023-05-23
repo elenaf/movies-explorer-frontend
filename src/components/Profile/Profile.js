@@ -1,15 +1,15 @@
 import './Profile.css';
 
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 
-import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from '../../utils/useForm';
 
 export default function Profile({ handleProfileEdit, handleSignOut }) {
     const currentUser = React.useContext(CurrentUserContext);
+    const [isEditButtonActive, setIsEditButtonActive] = useState(false);
 
-    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ email: currentUser.email, name: currentUser.name });
+    const { values, handleChange } = useFormWithValidation({ email: currentUser.email, name: currentUser.name });
 
     let { name, email } = values;
 
@@ -17,6 +17,14 @@ export default function Profile({ handleProfileEdit, handleSignOut }) {
         evt.preventDefault();
         handleProfileEdit({ name, email });
     }
+
+    useEffect(() => {
+        if (name === currentUser.name && email === currentUser.email) {
+            setIsEditButtonActive(false);
+        } else {
+            setIsEditButtonActive(true);
+        }
+    }, [name, email, currentUser]);
 
     return (
         <section className="profile">
@@ -48,7 +56,7 @@ export default function Profile({ handleProfileEdit, handleSignOut }) {
                 </div>
 
                 <div className="profile__control-buttons">
-                    <button type="submit" className="profile__control-button profile__submit-button">Редактировать</button>
+                    <button type="submit" className="profile__control-button profile__submit-button" disabled={!isEditButtonActive}>Редактировать</button>
                     <button type="button" onClick={handleSignOut} className="profile__control-button profile__signout-button">Выйти из аккаунта</button>
                 </div>
             </form>
