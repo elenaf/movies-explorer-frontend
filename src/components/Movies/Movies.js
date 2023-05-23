@@ -1,14 +1,20 @@
 import './Movies.css';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 import More from "./More/More";
 import moviesApi from '../../utils/MoviesApi';
+import Preloader from './Preloader/Preloader';
+import mainApi from '../../utils/MainApi';
 
 export default function Movies() {
+    const currentUser = React.useContext(CurrentUserContext);
+
     // стейт, который меняется каждый раз, когда пользователь вводит символ в строку поиска
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState(localStorage.getItem('search') ?? '');
 
     const [error, setError] = useState(false);
     const errorMessage = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
@@ -19,8 +25,17 @@ export default function Movies() {
     // тут храним все отданые api фильмы
     const [movies, setMovies] = useState([]);
 
+    // тут храним все отданные api сохраненные фильмы
+    const [savedMovies, setSavedMovies] = useState([]);
+
+    // состояние лайка
+    const [isLiked, setIsLiked] = useState();
+
+    // булевый стейт, идет ли загрузка фильмов на страницу
+    const [isLoading, setIsLoading] = useState(false);
+
     // условие поиска - короткометражки
-    const [isShort, setIsShort] = useState(false);
+    const [isShort, setIsShort] = useState(localStorage.getItem('isShort') ?? false);
 
     // страницы для вывода результатов поиска
     const [page, setPage] = useState(1);
@@ -40,16 +55,26 @@ export default function Movies() {
         } catch {
             setError(true);
         }
-        
     }, []);
 
-    // при монтировании компонента получаем список фильмов из api
+    // записываем полученные из api все сохраненные фильмы в стейт savedMovies
+    const fetchSavedMovies = useCallback(async () => {
+        try {
+            const res = await mainApi.getMovies();
+            setSavedMovies(res);
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    // при монтировании компонента Movies получаем список фильмов из api
+    // и сохраненные фильмы для лайканья
     useEffect(() => {
         fetchMovies();
-
+        fetchSavedMovies();
         const savedSearch = localStorage.getItem('search');
         const savedIsShort = localStorage.getItem('isShort');
-        const savedFilteredMovies = localStorage.getItem(JSON.parse('movies'));
+        const savedFilteredMovies = JSON.parse(localStorage.getItem('filteredMovies'));
 
         if (savedSearch) {
             setSearch(savedSearch);
@@ -70,19 +95,15 @@ export default function Movies() {
         }
     }, []);
 
-    /* const handleSearchSubmit = useCallback (async () => {
-        setFilterString(search);
-    }, [search]); */
-
     // Хранит фильмы, отфильтрованные по строке поиска.
     // Если содержимое строки поиска или начальный массив фильмов меняются,
     // происходит обновление списка отфильтрованных фильмов.
     const filteredMovies = useMemo(() => {
-        console.log('I will show you filtered movies!');
+       
         if (!filterString) {
             return [];
         }
-
+        
         const filtered = movies.filter((movie) => {
             const nameRU = movie.nameRU.toLowerCase();
             const nameEN = movie.nameEN.toLowerCase();
@@ -96,9 +117,10 @@ export default function Movies() {
             return nameRU.includes(filterStr) || nameEN.includes(filterStr);
         })
 
-        localStorage.setItem('search', filterString);
+        localStorage.setItem("search", filterString);
         localStorage.setItem('isShort', `${isShort}`);
-
+       localStorage.setItem('filteredMovies', JSON.stringify(filtered));
+        
         return filtered;
     }, [filterString, movies, isShort]);
 
@@ -114,14 +136,83 @@ export default function Movies() {
         setPage((prev) => prev + 1)
     }, []);
 
+    // обработчик клика по лайку
+    const handleLikeClick = async (movie) => {
+        // сравниваем id сохраненного фильма и того, по которому лайкаем
+        const likedMovie = savedMovies.find((m) => m.movieId === movie.movieId);
+        console.log(likedMovie);
+
+        if (likedMovie) {
+            const dislikedMovie = await mainApi.deleteMovie(likedMovie._id);
+            const likedMovies = savedMovies.filter((savedMovie) => {
+                if (savedMovie !== dislikedMovie) {
+                    return savedMovie;
+                }
+                return false;
+            });
+            setSavedMovies(likedMovies);
+        } else {
+            const movieToSave = await mainApi.addNewMovie(movie);
+            console.log(movieToSave);
+            setSavedMovies([...savedMovies, movieToSave]);
+        }
+      
+
+        /* const liked = savedMovies.some((m) => {
+            if (m.movieId === movie.movieId) {
+                likedM = m;
+                return true;
+            }
+            return false;
+        });
+        if (liked) {
+            const dislikedMovie = await mainApi.deleteMovie(likedM._id);
+            const likedMovies = savedMovies.filter((savedMovie) => {
+                if (savedMovie !== dislikedMovie) {
+                    return savedMovie;
+                }
+                return false;
+            });
+            console.log(likedMovies);
+            setSavedMovies(likedMovies);
+        } else {
+            const likedMovie = await mainApi.addNewMovie(movie);
+            console.log(likedMovie);
+            setSavedMovies([...savedMovies, likedMovie]);
+        } */
+    }
+
+   /*  useEffect(() => {
+        fetchSavedMovies();
+    }, [handleLikeClick]);
+ */
     return (
         <>
-            < SearchForm setIsShort={setIsShort} setSearch={setFilterString} search={search} />
-            {error ? <div className='movies__error'>{errorMessage}</div> : < MoviesCardList movies={moviesToRender} /> }
+            < SearchForm 
+                isShort={isShort}
+                setIsShort={setIsShort}
+                setFilterString={setFilterString}
+                search={search}
+                setSearch={setSearch}
+                setIsLoading={setIsLoading}
+            />
+
+            {error ? 
+            <div className='movies__error'>{errorMessage}</div> : 
+/*             isLoading ?
+            < Preloader /> : */
+            < MoviesCardList 
+                movies={moviesToRender} 
+                isSaved={false}
+                handleLikeClick={handleLikeClick}
+                savedMovies={savedMovies}
+            /> }
 
             {(filteredMovies.length > moviesToRender.length) && (
                 < More handleClick={handleMoreClick} />
             ) }
+
+            { (moviesToRender.length === 0) && <div className='movies__error'>Ничего не найдено</div> }
         </>
     );
 }

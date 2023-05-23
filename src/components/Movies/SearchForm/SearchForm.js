@@ -1,21 +1,24 @@
 import './SearchForm.css';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import { useCallback, useEffect, useState } from 'react';
 import { useFormWithValidation } from '../../../utils/useForm';
+import { useEffect } from 'react';
 
-export default function SearchForm({ setIsShort, setFilterString, search }) {
+export default function SearchForm({ isShort, setIsShort, setFilterString, search, setSearch, setIsLoading }) {
 
-    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ movies: '' });
-    
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ movie: search });
+
     useEffect(() => {
-        values["movie"] = search;
-    })
+        setSearch(values.movie);
+    }, [values.movie, setSearch])
+
+    /* useEffect(() => {
+        localStorage.setItem('search', search)
+    }, [search]) */
 
     const handleSearchSubmit = (evt) => {
         evt.preventDefault();
-        setFilterString = values["movie"];
-        console.log('searching');
-        // тут должен запускаться прелоадер?
+        setFilterString(search);
+        /* setIsLoading(true); */
     }
 
     return (
@@ -30,8 +33,8 @@ export default function SearchForm({ setIsShort, setFilterString, search }) {
                     placeholder="Фильм" 
                     required
                 />
-            <button className="movie-search__submit-button" type="submit" disabled={!isValid}>Найти</button>
-            < FilterCheckbox setIsShort={setIsShort} />
+            <button className="movie-search__submit-button" type="submit" disabled={!isValid && values["movie"]===""}>Найти</button>
+            < FilterCheckbox isShort={isShort} setIsShort={setIsShort} />
             {errors["movie"] && <span className='movie-search__error'>Нужно ввести ключевое слово</span>}
         </form>
     );

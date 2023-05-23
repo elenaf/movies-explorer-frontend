@@ -33,6 +33,11 @@
     background-color: #F9F9F9;
 }
 
+.movie-search__input:focus {
+    outline: 1px solid #FF6838;
+    background-color: #F9F9F9;
+}
+
 .movie-search__error {
     position: absolute;
     top: 130px;
@@ -52,9 +57,25 @@
     background-color: #FF6838;
 }
 
+.movie-search__submit-button:hover {
+    cursor: pointer;
+}
+
+.movie-search__submit-button:active {
+    border: 2px solid #ffbeaa;
+}
+
 .movie-search__submit-button:disabled {
     background-color: #E8E8E8;
     color: #A0A0A0;
+}
+
+.movie-search__submit-button:disabled:hover {
+    cursor: auto;
+}
+
+.movie-search__submit-button:disabled:active {
+    border: none;
 }
 
 @media screen and (max-width: 1279px) {

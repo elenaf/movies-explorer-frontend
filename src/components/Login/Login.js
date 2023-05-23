@@ -3,7 +3,6 @@ import './Login.css';
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import { useFormWithValidation } from '../../utils/useForm';
-import { login } from '../../utils/Auth';
 
 export default function Login({ handleLogin }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({ email:'', password:'' });

@@ -1,7 +1,7 @@
 import './App.css';
 
 import React, { useState } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import Main from '../Main/Main';
@@ -13,28 +13,34 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import Layout from '../Layout/Layout';
 
-import mainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { register, login, getUserData } from '../../utils/Auth';
+import mainApi from '../../utils/MainApi';
 import { useEffect } from 'react';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({/* name: '', email: '' */});
+  const [currentUser, setCurrentUser] = useState({name: '', email: '', _id:''});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegOk, setIsRegOk] = useState(true);
   const navigate = useNavigate();
 
-  const tokenCheck = async() => {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      try {
-        const userData = await getUserData(token);
-        setCurrentUser(...currentUser, userData);
-        setIsLoggedIn(true);
-      } catch (err) {
-        console.log(err);
-      }
+  const tokenCheck = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      getUserData(token)
+      .then((res) => {
+        if (res) {
+          const userData = {
+            name: res.name,
+            email: res.email
+          }
+          setIsLoggedIn(true);
+          setCurrentUser(userData);
+          navigate("/movies", {replace: true});
+        }
+      })
+      .catch((err) => console.log(err));
     }
   }
 
@@ -61,9 +67,45 @@ function App() {
     }
   };
 
+  const setUserInfo = async() => {
+    try {
+      const userInfo = await mainApi.getUserInfo();
+      setCurrentUser(userInfo);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    navigate("/signin");
+    setCurrentUser({email: '', name: '', _id: ''});
+    setIsLoggedIn(false);
+  }
+
+  const handleProfileEdit = async({ name, email }) => {
+    try {
+      const userData = await mainApi.editProfile({ email, name });
+      setCurrentUser({ ...currentUser, userData });
+      console.log(currentUser);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     tokenCheck();
-  }, [isLoggedIn]);
+    if (isLoggedIn) {
+      setUserInfo();
+    }
+  }, []);
+
+  useEffect(() => {
+    // почему тут начинается безумный поток запросов?
+    /* if (isLoggedIn) {
+      setUserInfo();
+    } */
+  }, [currentUser, isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -71,7 +113,7 @@ function App() {
 
         < Routes>
           < Route 
-            path='/' 
+            exact path='/' 
             element={
               <Layout isLoggedIn={isLoggedIn}>
                 < Main/>
@@ -80,25 +122,24 @@ function App() {
 
           < Route 
             path='/movies'
-            isLoggedIn={isLoggedIn}
             element={
-              < ProtectedRoute element={
-                <Layout>
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Layout isLoggedIn={isLoggedIn}>
                   < Movies />
                 </Layout>
-              } />
+              </ProtectedRoute>
             }
           />
+              
 
           < Route 
             path='/saved-movies'
-            isLoggedIn={isLoggedIn}
             element={
-              < ProtectedRoute element={
-                <Layout>
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Layout isLoggedIn={isLoggedIn}>
                   < SavedMovies />
                 </Layout>
-              } />
+              </ProtectedRoute>
             }
           />
 
@@ -106,11 +147,11 @@ function App() {
             path='/profile'
             isLoggedIn={isLoggedIn}
             element={
-              < ProtectedRoute element={
-                <Layout hasFooter={false}>
-                  < Profile />
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Layout hasFooter={false} isLoggedIn={isLoggedIn}>
+                  < Profile handleProfileEdit={handleProfileEdit} handleSignOut={handleSignOut}/>
                 </Layout>
-              } />
+              </ProtectedRoute>
             }
           />
 

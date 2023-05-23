@@ -8,7 +8,7 @@ class MoviesApi extends Api {
     }
 
     getMovies() {
-        return fetch(`${this._url}/d`, {
+        return fetch(`${this._url}/`, {
             headers: this._headers,
         })
         .then((res) => this._handleFetchResponse(res));
