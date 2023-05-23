@@ -9,3 +9,7 @@ https://disk.yandex.ru/d/4UYm0F5vNZfDxw
 ## О проекте
 
 Реализована главная страница с портфолио, страница с карточками фильмов, которые можно сохранять в избранное, страницы профиля, авторизации и регистрации.
+
+## Pull-request
+
+https://github.com/elenaf/movies-explorer-frontend/pull/2
