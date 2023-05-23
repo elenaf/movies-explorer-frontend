@@ -145,7 +145,7 @@ export default function Movies() {
         if (likedMovie) {
             const dislikedMovie = await mainApi.deleteMovie(likedMovie._id);
             const likedMovies = savedMovies.filter((savedMovie) => {
-                if (savedMovie !== dislikedMovie) {
+                if (savedMovie._id !== dislikedMovie._id) {
                     return savedMovie;
                 }
                 return false;

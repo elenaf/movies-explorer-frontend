@@ -78,6 +78,9 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('search');
+    localStorage.removeItem('isShort');
+    localStorage.removeItem('filteredMovies');
     navigate("/signin");
     setCurrentUser({email: '', name: '', _id: ''});
     setIsLoggedIn(false);
@@ -100,12 +103,7 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    // почему тут начинается безумный поток запросов?
-    /* if (isLoggedIn) {
-      setUserInfo();
-    } */
-  }, [currentUser, isLoggedIn]);
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

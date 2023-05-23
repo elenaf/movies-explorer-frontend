@@ -44,6 +44,7 @@
     object-fit: contain;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .movies-card__button-like {
