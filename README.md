@@ -13,3 +13,7 @@ https://disk.yandex.ru/d/4UYm0F5vNZfDxw
 ## Pull-request
 
 https://github.com/elenaf/movies-explorer-frontend/pull/2
+
+## Ссылка на проект
+
+https://movie.nomoredomains.monster/
