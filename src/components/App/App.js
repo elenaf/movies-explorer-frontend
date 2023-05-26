@@ -1,7 +1,7 @@
 import './App.css';
 
 import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import Main from '../Main/Main';
@@ -39,7 +39,6 @@ function App() {
           }
           setIsLoggedIn(true);
           setCurrentUser(userData);
-          navigate("/movies", {replace: true});
         }
       })
       .catch((err) => console.log(err));
@@ -52,6 +51,7 @@ function App() {
       setIsRegOk(true);
       await handleLogin(email, password);
       setCurrentUser(userData);
+      navigate("/movies", {replace: true});
     } catch (err) {
       setIsRegOk(false);
     }
@@ -63,7 +63,7 @@ function App() {
       localStorage.setItem('token', token);
       setIsLoggedIn(true);
       setUserInfo();
-      navigate("/movies");
+      navigate("/movies", {replace: true});
       setMessage();
     } catch (err) {
       console.log(err);
@@ -154,7 +154,13 @@ function App() {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Layout hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Profile handleProfileEdit={handleProfileEdit} handleSignOut={handleSignOut} isInfoPopupOpen={isInfoPopupOpen} setIsInfoPopupOpen={setIsInfoPopupOpen} popupMessage={message} />
+                  < Profile 
+                    handleProfileEdit={handleProfileEdit} 
+                    handleSignOut={handleSignOut} 
+                    isInfoPopupOpen={isInfoPopupOpen} 
+                    setIsInfoPopupOpen={setIsInfoPopupOpen} 
+                    popupMessage={message} 
+                  />
                 </Layout>
               </ProtectedRoute>
             }
@@ -164,7 +170,7 @@ function App() {
             path='/signin' 
             element={
               <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} errorMessage={message} setErrorMessage={setMessage} />
+                  { isLoggedIn ? <Navigate to="/movies" replace /> : < Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} errorMessage={message} setErrorMessage={setMessage} /> }
               </Layout>} 
           />
 
@@ -172,7 +178,7 @@ function App() {
             path='/signup' 
             element={
             <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-              < Register handleRegister={handleRegister} isRegOk={isRegOk} />
+              { isLoggedIn ? <Navigate to="/movies" replace /> : < Register handleRegister={handleRegister} isRegOk={isRegOk} /> }
             </Layout>} 
           />
 

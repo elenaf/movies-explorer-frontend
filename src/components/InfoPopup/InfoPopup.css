@@ -21,6 +21,7 @@
 .info-popup__button-close {
     display: block;
     position: absolute;
+    cursor: pointer;
     right: 5px;
     top: 5px;
     height: 22px;

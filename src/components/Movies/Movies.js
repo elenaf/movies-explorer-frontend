@@ -7,6 +7,8 @@ import More from "./More/More";
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 
+import { shortMovieDuration, moviesPerLargeScreen, moviesPerSmallScreen } from '../../constants/constants';
+
 export default function Movies() {
 
     // стейт, который меняется каждый раз, когда пользователь вводит символ в строку поиска
@@ -100,7 +102,7 @@ export default function Movies() {
             const filterStr = filterString.toLowerCase();
 
             // фильтр короткометражек
-            if (isShort && movie.duration > 40) {
+            if (isShort && movie.duration > shortMovieDuration) {
                 return false;
             }
 
@@ -117,7 +119,7 @@ export default function Movies() {
     // Фильмы, которые мы должны загрузить на экран
     // исходя из его ширины
     const moviesToRender = useMemo(() => {
-        const amountToRender = screenWidth > 768 ? 7 : 5;
+        const amountToRender = screenWidth > 768 ? moviesPerLargeScreen : moviesPerSmallScreen;
 
         return filteredMovies.slice(0, amountToRender * page);
     }, [filteredMovies, page, screenWidth]);

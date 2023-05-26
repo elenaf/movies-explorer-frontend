@@ -11,6 +11,8 @@ import { useMemo } from 'react';
 import { useEffect } from 'react';
 import Preloader from '../Movies/Preloader/Preloader';
 
+import { shortMovieDuration } from '../../constants/constants';
+
 export default function SavedMovies() {
 
     // стейт, который меняется каждый раз, когда пользователь вводит символ в строку поиска
@@ -65,7 +67,7 @@ export default function SavedMovies() {
             const filterStr = filterString.toLowerCase();
 
             // фильтр короткометражек
-            if (isShort && movie.duration > 40) {
+            if (isShort && movie.duration > shortMovieDuration) {
                 return false;
             }
 
