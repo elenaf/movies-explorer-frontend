@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from '../../utils/useForm';
+import InfoPopup from '../InfoPopup/InfoPopup';
 
-export default function Profile({ handleProfileEdit, handleSignOut }) {
+export default function Profile({ handleProfileEdit, handleSignOut, isInfoPopupOpen, setIsInfoPopupOpen, popupMessage }) {
     const currentUser = React.useContext(CurrentUserContext);
     const [isEditButtonActive, setIsEditButtonActive] = useState(false);
 
@@ -60,6 +61,10 @@ export default function Profile({ handleProfileEdit, handleSignOut }) {
                     <button type="button" onClick={handleSignOut} className="profile__control-button profile__signout-button">Выйти из аккаунта</button>
                 </div>
             </form>
+
+            <InfoPopup isOpen={isInfoPopupOpen} setIsOpen={setIsInfoPopupOpen}>
+                <span>{popupMessage}</span>
+            </InfoPopup>
 
         </section>
     );

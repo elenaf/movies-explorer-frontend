@@ -23,7 +23,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegOk, setIsRegOk] = useState(true);
-  const [errorMessage, setErrorMessage] = useState();
+  const [message, setMessage] = useState('');
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const navigate = useNavigate();
 
   const tokenCheck = () => {
@@ -63,11 +64,11 @@ function App() {
       setIsLoggedIn(true);
       setUserInfo();
       navigate("/movies");
-      setErrorMessage();
+      setMessage();
     } catch (err) {
       console.log(err);
       setIsLoggedIn(false);
-      setErrorMessage(err.message);
+      setMessage(err.message);
     }
   };
 
@@ -94,8 +95,10 @@ function App() {
     try {
       const userData = await mainApi.editProfile({ email, name });
       setCurrentUser(userData);
-      console.log(currentUser);
+      setMessage('Данные успешно обновлены!');
+      setIsInfoPopupOpen(true);
     } catch (err) {
+      setMessage(err.message);
       console.log(err);
     }
   }
@@ -151,7 +154,7 @@ function App() {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Layout hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Profile handleProfileEdit={handleProfileEdit} handleSignOut={handleSignOut}/>
+                  < Profile handleProfileEdit={handleProfileEdit} handleSignOut={handleSignOut} isInfoPopupOpen={isInfoPopupOpen} setIsInfoPopupOpen={setIsInfoPopupOpen} popupMessage={message} />
                 </Layout>
               </ProtectedRoute>
             }
@@ -161,7 +164,7 @@ function App() {
             path='/signin' 
             element={
               <Layout hasHeader={false} hasFooter={false} isLoggedIn={isLoggedIn}>
-                  < Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
+                  < Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} errorMessage={message} setErrorMessage={setMessage} />
               </Layout>} 
           />
 

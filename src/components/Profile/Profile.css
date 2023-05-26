@@ -3,6 +3,7 @@
     margin: 0 auto;
     text-align: center;
     padding: 74px 0 70px;
+    position: relative;
 }
 
 .profile__greeting {
