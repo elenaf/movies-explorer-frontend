@@ -110,7 +110,7 @@ export default function SavedMovies() {
                 savedMovies={movies}
             /> }
 
-            { (filteredMovies.length === 0) && <div className='movies__error'>Ничего не найдено</div> }
+            { filterString && (filteredMovies.length === 0) && <div className='movies__error'>Ничего не найдено</div> }
         </>
     );
 }

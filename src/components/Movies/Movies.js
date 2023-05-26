@@ -171,7 +171,7 @@ export default function Movies() {
                 < More handleClick={handleMoreClick} />
             ) }
 
-            { (moviesToRender.length === 0) && <div className='movies__error'>Ничего не найдено</div> }
+            { filterString && (moviesToRender.length === 0) && <div className='movies__error'>Ничего не найдено</div> }
         </>
     );
 }
