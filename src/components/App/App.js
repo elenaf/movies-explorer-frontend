@@ -86,7 +86,7 @@ function App() {
     localStorage.removeItem('search');
     localStorage.removeItem('isShort');
     localStorage.removeItem('filteredMovies');
-    navigate("/signin");
+    navigate("/");
     setCurrentUser({email: '', name: '', _id: ''});
     setIsLoggedIn(false);
   }
