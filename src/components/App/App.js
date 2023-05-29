@@ -105,6 +105,7 @@ function App() {
       setIsInfoPopupOpen(true);
     } catch (err) {
       setMessage(err.message);
+      setIsInfoPopupOpen(true);
       console.log(err);
     }
   }
