@@ -25,6 +25,9 @@ function App() {
   const [isRegOk, setIsRegOk] = useState(true);
   const [message, setMessage] = useState('');
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
+
+  const [isAppInit, setIsAppInit] = useState(false); // инициализировано ли приложение? нет, если данные currentUser еще не успели подгрузиться
+
   const navigate = useNavigate();
 
   const tokenCheck = () => {
@@ -38,10 +41,13 @@ function App() {
             email: res.email
           }
           setIsLoggedIn(true);
+          setIsAppInit(true);
           setCurrentUser(userData);
         }
       })
       .catch((err) => console.log(err));
+    } else {
+      setIsAppInit(true);
     }
   }
 
@@ -111,6 +117,9 @@ function App() {
   }, []);
 
 
+  if (!isAppInit) {
+    return null;
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
