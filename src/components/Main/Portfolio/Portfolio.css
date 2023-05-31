@@ -20,6 +20,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 125px;
 }
 
 .portfolio__item {
@@ -51,6 +52,10 @@
         margin-top: 91px;
     }
 
+    .portfolio__items {
+        padding-bottom: 90px;
+    }
+
     .portfolio__link {
         font-size: 28px;
         line-height: 1.78em;
@@ -67,6 +72,10 @@
         margin-bottom: 40px;
         font-size: 14px;
         line-height: 1.42em;
+    }
+
+    .portfolio__items {
+        padding-bottom: 70px;
     }
 
     .portfolio__link {

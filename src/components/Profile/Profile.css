@@ -3,6 +3,7 @@
     margin: 0 auto;
     text-align: center;
     padding: 74px 0 70px;
+    position: relative;
 }
 
 .profile__greeting {
@@ -66,20 +67,28 @@
     color: #000000;
     margin: 0 auto;
     padding: 0;
-}
-
-.profile__submit-button {
-    font-weight: 400;
     font-size: 13px;
     line-height: 1.21em;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.profile__control-button:active {
+    color: #E8E8E8;
+}
+
+.profile__control-button:disabled {
+    color: #E8E8E8;
+    cursor:default;
+}
+
+.profile__submit-button {
+    font-weight: 400;
 }
 
 .profile__signout-button {
     font-weight: 500;
-    font-size: 13px;
-    line-height: 1.21em;
     color: #EE3465;
 }
 

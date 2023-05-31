@@ -5,6 +5,17 @@
     background-color: #F9F9F9;
 }
 
+.movies-card:last-child {
+    margin-bottom: 140px;
+}
+
+
+.movies-card__wrap-link {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
 .movies-card__name {
     margin: 0;
     padding: 22px 0 13px 22px;
@@ -33,6 +44,7 @@
     object-fit: contain;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .movies-card__button-like {

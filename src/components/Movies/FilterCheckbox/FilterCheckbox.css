@@ -11,6 +11,7 @@
     border-radius: 20px;
     margin-right: 13px;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .short-films__filter_invisible {
