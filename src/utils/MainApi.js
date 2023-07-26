@@ -1,11 +1,23 @@
 import Api from "./Api";
 
+/* import axios from "axios"; */
+
 class MainApi extends Api {
     constructor(config) {
         super(config);
         this._url = config.url;
         this._headers = config.headers;
     }
+
+ /*    async getUserInfo() {
+            const res = await axios.get(`${this._url}/users/me`, {
+                headers: {
+                    ...this._headers,
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            });
+            this._handleFetchResponse(res);
+    } */
 
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
@@ -16,6 +28,17 @@ class MainApi extends Api {
         })
         .then((res) => this._handleFetchResponse(res));
     }
+
+    /* async editProfile({ email, name }) {
+        const res = await axios.patch(`${this._url}/users/me `, {
+          headers: {
+            ...this._headers,
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ email, name })
+        });
+        this._handleFetchResponse(res);
+    } */
 
     editProfile({ email, name }) {
         return fetch(`${this._url}/users/me `, {

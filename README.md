@@ -1,6 +1,6 @@
 # Фронтенд проекта Movies Explorer
 
-Дипломный проект, написанный на Реакте - [Create React App](https://github.com/facebook/create-react-app).
+Дипломный проект для Яндекс.Практикум, написанный на Реакте - [Create React App](https://github.com/facebook/create-react-app).
 
 ## Макет проекта в Figma
 
@@ -20,10 +20,3 @@ https://disk.yandex.ru/d/4UYm0F5vNZfDxw
 
 HTML5, CSS, JS React, БЭМ, Grid layout, Flexbox
 
-## Pull-request
-
-https://github.com/elenaf/movies-explorer-frontend/pull/2
-
-## Ссылка на проект
-
-https://movie.nomoredomains.monster/
